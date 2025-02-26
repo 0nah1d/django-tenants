@@ -19,7 +19,6 @@ class AuthenticationViewSet(viewsets.ModelViewSet):
         else:
             return EmptySerializer
 
-
     @action(detail=False, methods=['POST'], url_path='signup')
     def signup(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)

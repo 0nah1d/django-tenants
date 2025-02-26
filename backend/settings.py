@@ -3,8 +3,6 @@ from datetime import timedelta
 import environ
 import os
 
-from django.conf.global_settings import STORAGES
-
 # Initialize environment variables
 env = environ.Env()
 
@@ -153,8 +151,8 @@ STORAGES = {
         "BACKEND": "django_tenants.files.storage.TenantsFileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.staticfiles.StaticFilesStorage",
-    }
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
 }
 
 # Default primary key field type
