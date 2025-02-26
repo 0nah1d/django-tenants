@@ -3,6 +3,8 @@ from datetime import timedelta
 import environ
 import os
 
+from django.conf.global_settings import STORAGES
+
 # Initialize environment variables
 env = environ.Env()
 
@@ -142,6 +144,18 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django_tenants.files.storage.TenantsFileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.staticfiles.StaticFilesStorage",
+    }
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
