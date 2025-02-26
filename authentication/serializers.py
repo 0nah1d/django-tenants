@@ -53,3 +53,19 @@ class LoginSerializer(serializers.Serializer):
 
         attrs['user'] = user
         return attrs
+
+
+class ProfileInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('email', 'first_name', 'last_name')
+        read_only_fields = ['email']
+
+
+class ModifiedJWTSerializer(serializers.Serializer):
+    access = serializers.CharField(source='access_token')
+    refresh = serializers.CharField(source='refresh_token')
+    user = serializers.SerializerMethodField()
+
+    def get_user(self, obj):
+        return ProfileInfoSerializer(obj['user'], context=self.context).data
