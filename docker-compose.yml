@@ -1,9 +1,10 @@
-name: django-tenants-practice
+version: "3.8"
 
 services:
   postgres:
-    image: postgres
+    image: postgres:latest
     container_name: postgres-django-tenants-practice
+    restart: unless-stopped
     ports:
       - "5432:5432"
     env_file:
